@@ -29,8 +29,15 @@
         let stopGame  = document.getElementById('stopGame')
         stopGame.addEventListener('click',stop)
 
+        let gameStatus = false
+
+        // 關鍵在於choose和start這邊分開. 
         function choose(){
+            if(gameStatus){
+                return 
+            }
             timer = setInterval(start, 80)
+            gameStatus = true
         }
 
         function start(){
@@ -42,10 +49,11 @@
 
         function stop(){
             clearInterval(timer)
+            gameStatus = false
         }
 
         function getRandom(min, max){
-            return Math.floor(Math.random()*(max - min) + min);
+            return Math.floor(Math.random()*(max - min));
         }
 
     </script>
