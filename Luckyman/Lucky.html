@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>誰是幸運兒?</h2>
+    <label for="From">從</label>
+    <input type="text" name="From" id="From">
+    <label for="To">到</label>
+    <input
+        type="text"
+        name="To"
+        id="To"
+    >
+    <button id="lucky">誰是幸運兒?</button>
+    <button id="stopGame">Stop</button>
+    <div id="number"></div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+    <script>
+        let timer = "";
+        let luckyMan = document.getElementById('lucky')
+        luckyMan.addEventListener('click', choose)
+
+        let stopGame  = document.getElementById('stopGame')
+        stopGame.addEventListener('click',stop)
+
+        function choose(){
+            timer = setInterval(start, 80)
+        }
+
+        function start(){
+            let from = Number(document.getElementById('From').value)
+            let to = Number(document.getElementById('To').value)
+            let num = getRandom(from, to)
+            document.getElementById('number').innerHTML = `<h1 style="color:red">${num}</h1>`
+        }
+
+        function stop(){
+            clearInterval(timer)
+        }
+
+        function getRandom(min, max){
+            return Math.floor(Math.random()*(max - min) + min);
+        }
+
+    </script>
+</body>
+</html>
